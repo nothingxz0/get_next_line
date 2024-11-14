@@ -6,7 +6,7 @@
 /*   By: slasfar <slasfar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 09:01:19 by slasfar           #+#    #+#             */
-/*   Updated: 2024/11/14 11:04:13 by slasfar          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:24:05 by slasfar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_strchr(const char *s, char c)
 			return ((char *)s + i);
 		i++;
 	}
-	if (c == 0)
+	if (c == '\0')
 		return ((char *) s + i);
 	return (NULL);
 }
@@ -69,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	l = 0;
 	if (s1 == NULL)
 	{
-		s1 = malloc(sizeof(char) * 1);
+		s1 = malloc(1);
 		s1[0] = '\0';
 	}
 	if (!s1 || !s2)
