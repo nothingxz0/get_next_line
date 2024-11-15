@@ -6,7 +6,7 @@
 /*   By: slasfar <slasfar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 08:59:05 by slasfar           #+#    #+#             */
-/*   Updated: 2024/11/14 13:35:50 by slasfar          ###   ########.fr       */
+/*   Updated: 2024/11/15 13:47:22 by slasfar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
+
 
 char	*readfile(char *remaining, int fd)
 {
 	char	*buffer;
+	char	*tmp;
 	int		read_size;
 	
 	read_size = 1;
@@ -42,7 +45,7 @@ char	*split_lines(char *str)
 	int		index;
 
 	index = get_idx(str);
-	if (!str[index])
+	if (!str[0])
 		return (NULL);
 	new_line = (char *)malloc((index + 2) * sizeof(char));
 	if (!new_line)
@@ -66,9 +69,9 @@ char	*trimline(char	*remaining)
 	int		j;
 
 	i = get_idx(remaining);
-	if (!(*remaining))
+	if (remaining[i] == '\0')
 	{
-		free_ptr(&remaining);
+		free(remaining);
 		return (NULL);
 	}
 	j = 0;
@@ -77,9 +80,14 @@ char	*trimline(char	*remaining)
 		return (NULL);
 	i++;
 	while (remaining[i])
-		new_remaining[j++] = remaining[i++];
+	{
+		new_remaining[j] = remaining[i];
+		i++;
+		j++;
+	}
 	new_remaining[j] = '\0';
-	return (free(remaining), new_remaining);
+	free(remaining);
+	return (new_remaining);
 }
 
 char	*get_next_line(int fd)
@@ -112,4 +120,3 @@ int main() {
     close(fd);
     return 0;
 }
-
