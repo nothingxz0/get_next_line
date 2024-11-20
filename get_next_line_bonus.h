@@ -6,7 +6,7 @@
 /*   By: slasfar <slasfar@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:24:34 by slasfar           #+#    #+#             */
-/*   Updated: 2024/11/18 19:49:06 by slasfar          ###   ########.fr       */
+/*   Updated: 2024/11/20 21:49:04 by slasfar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+# elif BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
 # endif
 
 char	*ft_strjoin(char *s1, char *s2);
